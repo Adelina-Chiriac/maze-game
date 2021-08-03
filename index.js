@@ -24,19 +24,19 @@ World.add(world, MouseConstraint.create(engine, {
 // Walls
 const walls = [
     // top
-    Bodies.rectangle(400, 0, 800, 40, {
+    Bodies.rectangle(width / 2, 0, width, 40, {
         isStatic: true
     }),
     // right
-    Bodies.rectangle(800, 300, 40, 600, {
+    Bodies.rectangle(width, height / 2, 40, height, {
         isStatic: true
-    }),
+    }), 
     // bottom
-    Bodies.rectangle(400, 600, 800, 40, {
+    Bodies.rectangle(width / 2, height, width, 40, {
         isStatic: true
     }),
     // left
-    Bodies.rectangle(0, 300, 40, 600, {
+    Bodies.rectangle(0, height / 2, 40, height, {
         isStatic: true
     })
 ];  
