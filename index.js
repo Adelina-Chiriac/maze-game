@@ -53,3 +53,9 @@ const verticals = Array(3)
     .map(() => Array(2).fill(false));
 
 console.log(verticals);
+
+const horizontals = Array(2)
+    .fill(null)
+    .map(() => Array(3).fill(false));
+
+console.log(horizontals);
