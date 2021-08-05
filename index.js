@@ -151,6 +151,7 @@ horizontals.forEach((row, rowIndex) => {
             // wall height (Y axis)
             5,
             {
+                label: "wall", 
                 isStatic: true
             }
         );
@@ -179,6 +180,7 @@ verticals.forEach((row, rowIndex) => {
             // wall height (Y axis)
             unitLength,
             {
+                label: "wall", 
                 isStatic: true
             }
         );
@@ -249,9 +251,16 @@ Events.on(engine, "collisionStart", (event) => {
         // Define label array for winning condition check
         const labels = ["ball", "goal"];
 
-        // Check if winning condition is satisfied
+        // Check if winning condition is satisfied & if yes, add some animation to tell the user they won
         if (labels.includes(collision.bodyA.label) && labels.includes(collision.bodyB.label)) {
-            console.log("Congratulations, you won!");
+            // re-enable gravity
+            world.gravity.y = 1;
+            // animate the walls to crumble down
+            world.bodies.forEach((body) => {
+                if (body.label === "wall") {
+                    Body.setStatic(body, false);
+                }
+            });
         }
     });
 });
