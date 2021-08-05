@@ -145,7 +145,7 @@ horizontals.forEach((row, rowIndex) => {
             // wall length (X axis)
             unitLength,
             // wall height (Y axis)
-            10,
+            5,
             {
                 isStatic: true
             }
@@ -171,7 +171,7 @@ verticals.forEach((row, rowIndex) => {
             // Y direction
             rowIndex * unitLength + unitLength / 2,
             // wall length (X axis)
-            10,
+            5,
             // wall height (Y axis)
             unitLength,
             {
