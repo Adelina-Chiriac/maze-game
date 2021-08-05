@@ -270,6 +270,8 @@ Events.on(engine, "collisionStart", (event) => {
 
         // Check if winning condition is satisfied & if yes, add some animation to tell the user they won
         if (labels.includes(collision.bodyA.label) && labels.includes(collision.bodyB.label)) {
+            // display winning message
+            document.querySelector(".winner").classList.remove("hidden");
             // re-enable gravity
             world.gravity.y = 1;
             // animate the walls to crumble down
