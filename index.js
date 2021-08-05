@@ -23,19 +23,19 @@ Runner.run(Runner.create(), engine);
 // Walls
 const walls = [
     // top
-    Bodies.rectangle(width / 2, 0, width, 40, {
+    Bodies.rectangle(width / 2, 0, width, 2, {
         isStatic: true
     }),
     // right
-    Bodies.rectangle(width, height / 2, 40, height, {
+    Bodies.rectangle(width, height / 2, 2, height, {
         isStatic: true
     }), 
     // bottom
-    Bodies.rectangle(width / 2, height, width, 40, {
+    Bodies.rectangle(width / 2, height, width, 2, {
         isStatic: true
     }),
     // left
-    Bodies.rectangle(0, height / 2, 40, height, {
+    Bodies.rectangle(0, height / 2, 2, height, {
         isStatic: true
     })
 ];  
