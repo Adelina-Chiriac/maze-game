@@ -4,6 +4,8 @@ const cells = 3;
 const width = 600;
 const height = 600;
 
+const unitLength = width / cells;
+
 const engine = Engine.create();
 const { world } = engine;
 const render = Render.create({
