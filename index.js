@@ -42,7 +42,6 @@ const walls = [
 
 World.add(world, walls);
 
-World.add(world, Bodies.rectangle(200, 200, 50, 50));
 
 // Maze Generation
 const grid = Array(cells)
@@ -213,3 +212,22 @@ const ball = Bodies.circle(
 );
 
 World.add(world, ball);
+
+document.addEventListener("keydown", event => {
+    // move up
+    if (event.keyCode === 87) {
+        console.log("Up!");
+    }
+    // move right
+    if (event.keyCode === 68) {
+        console.log("Right!");
+    }
+    // move down
+    if (event.keyCode === 83) {
+        console.log("Down!");
+    }
+    // move left
+    if (event.keyCode === 65) {
+        console.log("Left!");
+    }
+});
