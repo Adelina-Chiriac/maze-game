@@ -1,6 +1,6 @@
-const { Engine, Render, Runner, World, Bodies } = Matter;
+const { Engine, Render, Runner, World, Bodies, Body } = Matter;
 
-const cells = 3;
+const cells = 5;
 const width = 600;
 const height = 600;
 
@@ -214,20 +214,23 @@ const ball = Bodies.circle(
 World.add(world, ball);
 
 document.addEventListener("keydown", event => {
+    // Destructure ball velocity coordinates
+    const { x, y } = ball.velocity;
+
     // move up
     if (event.keyCode === 87) {
-        console.log("Up!");
+        Body.setVelocity(ball, { x: x, y: y - 5});
     }
     // move right
     if (event.keyCode === 68) {
-        console.log("Right!");
+        Body.setVelocity(ball, { x: x + 5, y: y });
     }
     // move down
     if (event.keyCode === 83) {
-        console.log("Down!");
+        Body.setVelocity(ball, { x: x, y: y + 5 });
     }
     // move left
     if (event.keyCode === 65) {
-        console.log("Left!");
+        Body.setVelocity(ball, { x: x - 5, y: y });
     }
 });
