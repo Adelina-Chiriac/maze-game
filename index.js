@@ -184,3 +184,20 @@ verticals.forEach((row, rowIndex) => {
         World.add(world, wall);
     });
 });
+
+// Add the goal
+const goal = Bodies.rectangle(
+    // X direction
+    width - unitLength / 2,
+    // Y direction
+    height - unitLength / 2,
+    // length
+    unitLength * 0.6,
+    // height
+    unitLength * 0.6,
+    {
+        isStatic: true
+    }
+);
+
+World.add(world, goal);
