@@ -201,3 +201,15 @@ const goal = Bodies.rectangle(
 );
 
 World.add(world, goal);
+
+// Add the ball
+const ball = Bodies.circle(
+    // X direction
+    unitLength / 2,
+    // Y direction
+    unitLength / 2,
+    // radius
+    unitLength / 4
+);
+
+World.add(world, ball);
