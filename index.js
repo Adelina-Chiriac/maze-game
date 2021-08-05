@@ -1,10 +1,13 @@
 const { Engine, Render, Runner, World, Bodies, Body, Events } = Matter;
 
-const cells = 3;
-const width = 600;
-const height = 600;
+const cellsHorizontal = 4;
+const cellsVertical = 3;
 
-const unitLength = width / cells;
+const width = window.innerWidth;
+const height = window.innerHeight;
+
+const unitLengthX = width / cellsHorizontal;
+const unitLengthY = height / cellsVertical;
 
 const engine = Engine.create();
 
@@ -48,20 +51,20 @@ World.add(world, walls);
 
 
 // Maze Generation
-const grid = Array(cells)
+const grid = Array(cellsVertical)
     .fill(null)
-    .map(() => Array(cells).fill(false));
+    .map(() => Array(cellsHorizontal).fill(false));
 
-const verticals = Array(cells)
+const verticals = Array(cellsVertical)
     .fill(null)
-    .map(() => Array(cells - 1).fill(false));
+    .map(() => Array(cellsHorizontal - 1).fill(false));
 
-const horizontals = Array(cells - 1)
+const horizontals = Array(cellsVertical - 1)
     .fill(null)
-    .map(() => Array(cells).fill(false));
+    .map(() => Array(cellsHorizontal).fill(false));
 
-const startRow = Math.floor(Math.random() * cells);
-const startColumn = Math.floor(Math.random() * cells);
+const startRow = Math.floor(Math.random() * cellsVertical);
+const startColumn = Math.floor(Math.random() * cellsHorizontal);
 
 const shuffle = (arr) => {
     let counter = arr.length;
@@ -102,7 +105,7 @@ const moveThroughCell = (row, column) => {
         const [nextRow, nextColumn, direction] = neighbour;
 
         // Check if this neighbour is out of bounds, and if yes, skip this element
-        if (nextRow < 0 || nextRow >= cells || nextColumn < 0 || nextColumn >= cells) {
+        if (nextRow < 0 || nextRow >= cellsVertical || nextColumn < 0 || nextColumn >= cellsHorizontal) {
             continue;
         }
 
@@ -143,11 +146,11 @@ horizontals.forEach((row, rowIndex) => {
         // If there is a wall, draw it at the proper coordinates
         const wall = Bodies.rectangle(
             // X direction
-            columnIndex * unitLength + unitLength / 2,
+            columnIndex * unitLengthX + unitLengthX / 2,
             // Y direction
-            rowIndex * unitLength + unitLength,
+            rowIndex * unitLengthY + unitLengthY,
             // wall length (X axis)
-            unitLength,
+            unitLengthX,
             // wall height (Y axis)
             5,
             {
@@ -172,13 +175,13 @@ verticals.forEach((row, rowIndex) => {
         // If there is a wall, draw it at the proper coordinates
         const wall = Bodies.rectangle(
             // X direction
-            columnIndex * unitLength + unitLength,
+            columnIndex * unitLengthX + unitLengthX,
             // Y direction
-            rowIndex * unitLength + unitLength / 2,
+            rowIndex * unitLengthY + unitLengthY / 2,
             // wall length (X axis)
             5,
             // wall height (Y axis)
-            unitLength,
+            unitLengthY,
             {
                 label: "wall", 
                 isStatic: true
@@ -193,13 +196,13 @@ verticals.forEach((row, rowIndex) => {
 // Add the goal
 const goal = Bodies.rectangle(
     // X direction
-    width - unitLength / 2,
+    width - unitLengthX / 2,
     // Y direction
-    height - unitLength / 2,
+    height - unitLengthY / 2,
     // length
-    unitLength * 0.6,
+    unitLengthX * 0.6,
     // height
-    unitLength * 0.6,
+    unitLengthY * 0.6,
     {
         label: "goal",
         isStatic: true
@@ -209,13 +212,14 @@ const goal = Bodies.rectangle(
 World.add(world, goal);
 
 // Add the ball
+const ballRadius = Math.min(unitLengthX, unitLengthY) / 4;
 const ball = Bodies.circle(
     // X direction
-    unitLength / 2,
+    unitLengthX / 2,
     // Y direction
-    unitLength / 2,
+    unitLengthY / 2,
     // radius
-    unitLength / 4,
+    ballRadius,
     {
         label: "ball"
     }
