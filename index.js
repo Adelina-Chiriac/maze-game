@@ -129,6 +129,7 @@ const moveThroughCell = (row, column) => {
 
 moveThroughCell(startRow, startColumn);
 
+// Draw the horizontal segments
 horizontals.forEach((row, rowIndex) => {
     row.forEach((open, columnIndex) => {
         // If there is no wall, return
@@ -146,6 +147,34 @@ horizontals.forEach((row, rowIndex) => {
             unitLength,
             // wall height (Y axis)
             10,
+            {
+                isStatic: true
+            }
+        );
+
+        // Add the wall to the maze (world)
+        World.add(world, wall);
+    });
+});
+
+// Draw the vertical segments
+verticals.forEach((row, rowIndex) => {
+    row.forEach((open, columnIndex) => {
+        // If there is no wall, return
+        if (open) {
+            return;
+        }
+
+        // If there is a wall, draw it at the proper coordinates
+        const wall = Bodies.rectangle(
+            // X direction
+            columnIndex * unitLength + unitLength,
+            // Y direction
+            rowIndex * unitLength + unitLength / 2,
+            // wall length (X axis)
+            10,
+            // wall height (Y axis)
+            unitLength,
             {
                 isStatic: true
             }
